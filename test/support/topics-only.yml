@@ -1,0 +1,14 @@
+topics:
+  - name: topic1
+    subscriptions:
+      - name: sub1
+        pushEndpoint: http://localhost:9080 # no trailing slash
+        handler: localSub1
+      - name: sub2
+        pushEndpoint: http://localhost:9081
+        handler: localSub2
+  - name: topic2
+    subscriptions:
+      - name: sub3
+        pushEndpoint: http://localhost:9082
+        handler: localSub3

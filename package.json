@@ -2,6 +2,9 @@
   "name": "gcp-psf-local-devkit",
   "version": "0.1.0",
   "description": "Google PubSub Functions Development Kit with Emulator",
+  "bin": {
+    "psf-devkit": "./bin/psf-devkit.js"
+  },
   "main": "index.js",
   "scripts": {
     "test": "npm-run-all lint spec",
