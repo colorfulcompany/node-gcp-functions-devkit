@@ -1,6 +1,6 @@
 {
   "name": "gcp-psf-local-devkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Google PubSub Functions Development Kit with Emulator",
   "bin": {
     "psf-devkit": "./bin/psf-devkit.js"
