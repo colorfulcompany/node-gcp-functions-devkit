@@ -2,12 +2,29 @@
 
 const path = require('path')
 const sleep = require('sleep-promise')
+const assert = require('power-assert')
+
 const Command = require('command')
 
 describe('Command', function () {
   this.timeout(5000)
-  it.skip('#options', () => {
-    console.log((new Command()).options)
+  describe('#options', () => {
+    it('options is object', () => {
+      assert.equal(typeof (new Command()).options, 'object')
+    })
+    describe('behave yargs because argv, help, parse and usage', () => {
+      const options = (new Command()).options
+      it('argv property', () => {
+        assert.equal(typeof options.argv, 'object')
+      })
+      it('help, parse and usage methods', () => {
+        assert(
+          'help parse usage'.split(/\s/).every((prop) => {
+            return typeof options[prop] === 'function'
+          })
+        )
+      })
+    })
   })
 
   function configOption () {
