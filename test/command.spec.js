@@ -39,20 +39,20 @@ describe('Command', function () {
     return launcher
   }
 
-  it.skip('launch without options', async () => {
+  it('launch without options', async () => {
     const command = new Command(['launch'])
     const launcher = await command.run()
     await sleep(3500)
     await launcher.kill()
   })
-  it.skip('sub', async () => {
+  it('sub', async () => {
     const launcher = await launch()
     const sub = new Command(['sub', ...configOption()])
     await sub.run()
     await sleep(1000)
     await launcher.kill()
   })
-  it.skip('pub with message', async function () {
+  it('pub with message', async function () {
     this.timeout(7000)
 
     const launcher = await launch()
