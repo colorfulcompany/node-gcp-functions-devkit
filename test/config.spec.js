@@ -31,7 +31,7 @@ describe('Config', () => {
         })
       })
     })
-    
+
     describe('empty yaml', () => {
       beforeEach(() => {
         config = createConfig(path.join(__dirname, 'support/empty.yml'))
@@ -56,5 +56,5 @@ describe('Config', () => {
         })
       })
     })
-  })  
+  })
 })

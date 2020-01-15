@@ -4,17 +4,17 @@ const path = require('path')
 const sleep = require('sleep-promise')
 const Command = require('command')
 
-describe('Command', function ()  {
+describe('Command', function () {
   this.timeout(5000)
   it.skip('#options', () => {
-    (new Command()).options
+    console.log((new Command()).options)
   })
 
   function configOption () {
     const opt = ['-c', path.join(__dirname, 'support/topics-only.yml')]
     return opt
   }
-  
+
   async function launch () {
     const command = new Command(['launch', ...configOption()])
     const launcher = await command.run()
@@ -37,7 +37,7 @@ describe('Command', function ()  {
   })
   it.skip('pub with message', async function () {
     this.timeout(7000)
-    
+
     const launcher = await launch()
     const sub = new Command(['sub', ...configOption()])
     await sub.run()

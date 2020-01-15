@@ -30,14 +30,14 @@ class Subscriber {
 
     Promise.all(this.config.topics.map(async (topic) => {
       await pubsub.createTopic(topic.name)
-       console.debug(`created topic ${topic.name}`)
+      console.debug(`created topic ${topic.name}`)
       Promise.all(topic.subscriptions.map(async (subscription) => {
         await pubsub.createSubscription(
           topic.name,
           subscription.name,
           { pushEndpoint: subscription.pushEndpoint }
         )
-         console.debug(`created subscription ${subscription.name} to ${subscription.pushEndpoint}`)
+        console.debug(`created subscription ${subscription.name} to ${subscription.pushEndpoint}`)
       }))
     }))
   }

@@ -36,7 +36,7 @@ class Launcher {
    *       - ...
    *   - ...
    */
-  async launchFunctions () {    
+  async launchFunctions () {
     this.config.topics.forEach((topic) => {
       topic.subscriptions.forEach(async (subscription) => {
         const spec = this.extractFuncSpec(subscription)

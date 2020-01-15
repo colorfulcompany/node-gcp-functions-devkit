@@ -17,14 +17,14 @@ class Config {
       this[key] = config[key]
     })
   }
-  
+
   /**
    * @return {object}
    */
   load () {
     return { ...this.default, ...this.loadConf() }
   }
-  
+
   /**
    * @return {object}
    */
@@ -35,22 +35,22 @@ class Config {
       topics: []
     }
   }
-  
+
   /**
    * @param {string} path
    * @return {object}
    */
   loadConf () {
     const path = this._givenPath
-    
+
     const explorer = cosmiconfigSync('psf-devkit', {
       searchPlaces: this.searchPlaces()
     })
-    
+
     return (typeof path === 'string' && path.length > 0 && explorer.load(path).config)
       ? (explorer.search()
-         ? explorer.search().config
-         : {})
+        ? explorer.search().config
+        : {})
       : {}
   }
 
@@ -62,7 +62,7 @@ class Config {
       '.psf-devkit.yaml',
       '.psf-devkit.yml'
     ]
-  }  
+  }
 }
 
 module.exports = Config

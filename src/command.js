@@ -19,7 +19,7 @@ class Command {
    */
   async run () {
     this.options.parse(this.argv)
-      
+
     return this.lastExecuted
   }
 
@@ -70,7 +70,7 @@ class Command {
 
     return config
   }
-  
+
   /**
    * @param {object} argv - parsed yargs
    * @return {object} - Launcher
