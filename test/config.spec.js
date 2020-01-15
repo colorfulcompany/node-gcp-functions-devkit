@@ -56,5 +56,28 @@ describe('Config', () => {
         })
       })
     })
+
+    describe('topics only yaml specified', () => {
+      beforeEach(() => {
+        config = createConfig(path.join(__dirname, 'support/topics-only.yml'))
+      })
+
+      describe('#loadConf()', () => {
+        it('has topic1 and topic2', () => {
+          assert.deepEqual(
+            config.loadConf().topics.map((t) => t.name),
+            ['topic1', 'topic2']
+          )
+        })
+      })
+    })
+
+    describe('YAML file not found', () => {
+      it('throw error', () => {
+        assert.throws(
+          () => createConfig(path.join(__dirname, 'nonexist.yml')).loadConf()
+        )
+      })
+    })
   })
 })
