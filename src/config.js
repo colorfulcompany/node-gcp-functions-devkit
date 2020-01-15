@@ -48,8 +48,10 @@ class Config {
     })
     
     return (typeof path === 'string' && path.length > 0 && explorer.load(path).config)
-      || explorer.search().config
-      || {}
+      ? (explorer.search()
+         ? explorer.search().config
+         : {})
+      : {}
   }
 
   /**
