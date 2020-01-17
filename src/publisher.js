@@ -23,8 +23,10 @@ class Publisher {
       readable.on('close', () => resolve(argv.message))
 
       readable.pipe(proc.stdin)
-      proc.stdout.pipe(process.stdout)
-      proc.stderr.pipe(process.stderr)
+      if (process.env.NODE_ENV !== 'test') {
+        proc.stdout.pipe(process.stdout)
+        proc.stderr.pipe(process.stderr)
+      }
 
       readable.push(argv.message)
       readable.push(null)
