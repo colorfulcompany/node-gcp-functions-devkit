@@ -9,7 +9,7 @@
   "scripts": {
     "test": "npm-run-all lint spec",
     "lint": "eslint .",
-    "spec": "NODE_PATH=./src mocha -r intelli-espower-loader test/**/*.spec.js"
+    "spec": "NODE_ENV=test NODE_PATH=./src mocha -r intelli-espower-loader test/**/*.spec.js"
   },
   "author": "Colorful Company,Inc.",
   "license": "BSD-2-Clause",

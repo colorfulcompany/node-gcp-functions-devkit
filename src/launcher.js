@@ -18,6 +18,10 @@ class Launcher {
 
   async launchEmulator () {
     const proc = execa('gcloud', ['beta', 'emulators', 'pubsub', 'start', '--host-port', this.config['emulator-host-port'], '--project', this.config.projectId])
+    if (process.env.NODE_ENV !== 'test') {
+      proc.stdout.pipe(process.stdout)
+      proc.stderr.pipe(process.stderr)
+    }
     console.debug(`listening emulator on ${this.config['emulator-host-port']}`)
     this.procs.push(proc)
   }
@@ -41,6 +45,10 @@ class Launcher {
       topic.subscriptions.forEach(async (subscription) => {
         const spec = this.extractFuncSpec(subscription)
         const proc = execa('functions-framework', ['--target', spec.handler, '--port', spec.port])
+        if (process.env.NODE_ENV !== 'test') {
+          proc.stdout.pipe(process.stdout)
+          proc.stderr.pipe(process.stderr)
+        }
         this.procs.push(proc)
         console.debug(`listening function ${spec.handler} on ${spec.port}`)
       })

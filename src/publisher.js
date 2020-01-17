@@ -16,13 +16,17 @@ class Publisher {
     process.env.PUBSUB_EMULATOR_HOST = this.config['emulator-host-port']
     return new Promise((resolve, reject) => {
       const readable = new Readable()
-      const { stdin } = execa('publish-to-pubsub-topic', [argv.topic, '--project', this.config.projectId])
-      stdin.on('error', (err) => reject(err))
+      const proc = execa('publish-to-pubsub-topic', [argv.topic, '--project', this.config.projectId])
+      proc.stdin.on('error', (err) => reject(err))
       readable.on('error', (err) => reject(err))
       readable.on('end', () => resolve(argv.message))
       readable.on('close', () => resolve(argv.message))
 
-      readable.pipe(stdin)
+      readable.pipe(proc.stdin)
+      if (process.env.NODE_ENV !== 'test') {
+        proc.stdout.pipe(process.stdout)
+        proc.stderr.pipe(process.stderr)
+      }
 
       readable.push(argv.message)
       readable.push(null)
