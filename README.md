@@ -55,5 +55,5 @@ async function sub (event, context) {
 // for production
 exports.sub = sub
 // for local development (cannot receive valid context object)
-exports.localSub = async (req, res) => localHandler(req, {}, sub)
+exports.localSub = async (req, res) => localHandler(req, res, sub)
 ```
