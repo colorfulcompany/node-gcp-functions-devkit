@@ -1,8 +1,33 @@
-module.exports = async function localHandler (req, res, callback) {
-  const message = Buffer.from(req.body.message.data, 'base64').toString()
-  const timestamp = (new Date()).toLocaleString('default', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZoneName: 'short' })
+/**
+ * @return {string}
+ */
+function timestamp () {
+  return (new Date()).toLocaleString(
+    'default',
+    {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZoneName: 'short'
+    })
+}
 
-  console.debug(`[${timestamp}] invoke [Function: ${callback.name}] with ${message}`)
+/**
+ * @param {object} req
+ * @return {string}
+ */
+function message (req) {
+  const message = req.body.message.data || req.body.message
+
+  return Buffer.from(message, 'base64').toString()
+}
+
+module.exports = async function localHandler (req, res, callback) {
+  console.debug(`[${timestamp()}] invoke [Function: ${callback.name}] with ${message(req)}`)
   const r = (await callback(req.body.message, {}))
     ? {
       status: 200,
