@@ -28,15 +28,21 @@ function message (req) {
 
 module.exports = async function localHandler (req, res, callback) {
   console.debug(`[${timestamp()}] invoke [Function: ${callback.name}] with ${message(req)}`)
-  const r = (await callback(req.body.message, {}))
-    ? {
-      status: 200,
-      message: '200 OK'
-    }
-    : {
-      status: 400,
-      message: '400 Bad Request'
-    }
+  try {
+    const r = (await callback(req.body.message, {}))
+      ? {
+        status: 200,
+        message: '200 OK'
+      }
+      : {
+        status: 400,
+        message: '400 Bad Request'
+      }
 
-  res.status(r.status).send(r.message)
+    res.status(r.status).send(r.message)
+  } catch (e) {
+    console.error('[psf-devkit] !!! FATAL ERROR, BUT RETRY HAS CANCELLED BY LOCAL HANDLER !!!')
+    console.error(e)
+    res.status(200).send('')
+  }
 }
