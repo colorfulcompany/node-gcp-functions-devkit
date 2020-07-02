@@ -18,6 +18,7 @@
     "@google-cloud/pubsub": "^1.2.0",
     "acorn": "7.1.1",
     "cosmiconfig": "^6.0.0",
+    "ecstatic": "4.1.4",
     "google-pubsub-cli": "^2.0.0",
     "minimist": "1.2.5",
     "tree-kill": "^1.2.2",
