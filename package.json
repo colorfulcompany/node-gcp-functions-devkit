@@ -19,6 +19,7 @@
     "acorn": "7.1.1",
     "cosmiconfig": "^6.0.0",
     "google-pubsub-cli": "^2.0.0",
+    "minimist": "1.2.5",
     "tree-kill": "^1.2.2",
     "yargs": "^15.1.0"
   },
