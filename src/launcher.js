@@ -44,7 +44,7 @@ class Launcher {
     this.config.topics.forEach((topic) => {
       topic.subscriptions.forEach(async (subscription) => {
         const spec = this.extractFuncSpec(subscription)
-        const proc = execa('functions-framework', ['--target', spec.handler, '--port', spec.port])
+        const proc = execa('nodemon', ['-x', 'functions-framework', '--target', spec.handler, '--port', spec.port])
         if (process.env.NODE_ENV !== 'test') {
           proc.stdout.pipe(process.stdout)
           proc.stderr.pipe(process.stderr)
