@@ -1,7 +1,7 @@
 const execa = require('execa')
 const kill = require('tree-kill')
 
-class Launcher {
+class PsfLauncher {
   /**
    * @param {object} config
    */
@@ -76,4 +76,4 @@ class Launcher {
   }
 }
 
-module.exports = Launcher
+module.exports = PsfLauncher

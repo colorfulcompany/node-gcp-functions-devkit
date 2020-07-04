@@ -1,6 +1,6 @@
 const { cosmiconfigSync } = require('cosmiconfig')
 
-class Config {
+class PsfConfig {
   /**
    * @param {string} path
    */
@@ -67,4 +67,4 @@ class Config {
   }
 }
 
-module.exports = Config
+module.exports = PsfConfig

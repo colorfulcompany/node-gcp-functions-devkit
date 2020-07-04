@@ -1,12 +1,12 @@
-const Config = require('./src/config')
-const Launcher = require('./src/launcher')
+const PsfConfig = require('./src/configs/psf')
+const PsfLauncher = require('./src/launchers/psf')
 const localHandler = require('./src/local-handler')
 const Publisher = require('./src/publisher')
 const Subscriber = require('./src/subscriber')
 
 module.exports = {
-  Config,
-  Launcher,
+  PsfConfig,
+  PsfLauncher,
   localHandler,
   Publisher,
   Subscriber

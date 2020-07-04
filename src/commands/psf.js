@@ -1,11 +1,11 @@
 const yargs = require('yargs')
 
-const Config = require('./config')
-const Launcher = require('./launcher')
-const Publisher = require('./publisher')
-const Subscriber = require('./subscriber')
+const PsfConfig = require('../configs/psf')
+const PsfLauncher = require('../launchers/psf')
+const Publisher = require('../publisher')
+const Subscriber = require('../subscriber')
 
-class Command {
+class PsfCommand {
   /**
    * @param {Array} argv
    */
@@ -65,7 +65,7 @@ class Command {
    * @return {object}
    */
   createConfig (configPath) {
-    const config = new Config(configPath)
+    const config = new PsfConfig(configPath)
     config.init()
 
     return config
@@ -76,7 +76,7 @@ class Command {
    * @return {object} - Launcher
    */
   launch (argv) {
-    const launcher = new Launcher(this.createConfig(argv.c))
+    const launcher = new PsfLauncher(this.createConfig(argv.c))
     ;(async () => launcher.run())()
 
     this.lastExecuted = launcher
@@ -105,4 +105,4 @@ class Command {
   }
 }
 
-module.exports = Command
+module.exports = PsfCommand

@@ -4,9 +4,9 @@ const path = require('path')
 const assert = require('power-assert')
 const sinon = require('sinon')
 
-const Config = require('config')
+const PsfConfig = require('configs/psf')
 
-describe('Config', () => {
+describe('PsfConfig', () => {
   let config
 
   describe('default config file not exists', () => {
@@ -14,8 +14,8 @@ describe('Config', () => {
      * @param {string} configPath
      * @return {object}
      */
-    function createConfig (configPath) {
-      config = new Config(configPath)
+    function createPsfConfig (configPath) {
+      config = new PsfConfig(configPath)
       sinon.stub(config, 'searchPlaces').returns([])
 
       return config
@@ -23,7 +23,7 @@ describe('Config', () => {
 
     describe('no config file specified', () => {
       beforeEach(() => {
-        config = createConfig()
+        config = createPsfConfig()
       })
       describe('#loadConf()', () => {
         it('return {}', () => {
@@ -34,7 +34,7 @@ describe('Config', () => {
 
     describe('empty yaml', () => {
       beforeEach(() => {
-        config = createConfig(path.join(__dirname, 'support/empty.yml'))
+        config = createPsfConfig(path.join(__dirname, '../support/empty.yml'))
       })
 
       describe('#loadConf()', () => {
@@ -48,7 +48,7 @@ describe('Config', () => {
         })
       })
       describe('#init', () => {
-        it('Config object properties should be added', () => {
+        it('PsfConfig object properties should be added', () => {
           config.init()
           assert.deepEqual(
             Object.keys(config),
@@ -59,7 +59,7 @@ describe('Config', () => {
 
     describe('topics only yaml specified', () => {
       beforeEach(() => {
-        config = createConfig(path.join(__dirname, 'support/topics-only.yml'))
+        config = createPsfConfig(path.join(__dirname, '../support/topics-only.yml'))
       })
 
       describe('#loadConf()', () => {
@@ -75,7 +75,7 @@ describe('Config', () => {
     describe('YAML file not found', () => {
       it('throw error', () => {
         assert.throws(
-          () => createConfig(path.join(__dirname, 'nonexist.yml')).loadConf()
+          () => createPsfConfig(path.join(__dirname, 'nonexist.yml')).loadConf()
         )
       })
     })
