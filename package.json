@@ -3,7 +3,8 @@
   "version": "0.2.0",
   "description": "Google PubSub Functions Development Kit with Emulator",
   "bin": {
-    "psf-devkit": "./bin/psf-devkit.js"
+    "psf-devkit": "./bin/psf-devkit.js",
+    "htf-devkit": "./bin/htf-devkit.js"
   },
   "main": "index.js",
   "scripts": {

@@ -1,0 +1,4 @@
+- target: func1
+  port: 9000
+- target: func2
+  port: 9010
