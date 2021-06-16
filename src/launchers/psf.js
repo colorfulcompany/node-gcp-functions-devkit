@@ -67,12 +67,14 @@ class PsfLauncher {
   }
 
   async kill () {
-    return new Promise((resolve, reject) => {
-      Promise.all(this.procs.map(async (proc) => {
-        kill(proc.pid, (err) => reject(err))
-      }))
-      resolve(true)
-    })
+    return Promise.all(this.procs.map((proc) => {
+      kill(proc.pid, 'SIGKILL', (err) => {
+        if (err !== undefined) {
+          console.error(err)
+        }
+        return true
+      })
+    }))
   }
 }
 
