@@ -24,7 +24,7 @@
     "cosmiconfig": "^6.0.0",
     "ecstatic": "4.1.4",
     "google-pubsub-cli": "^2.0.0",
-    "minimist": "1.2.5",
+    "minimist": "1.2.6",
     "nodemon": "^2.0.4",
     "tree-kill": "^1.2.2",
     "yargs": "^15.1.0"
